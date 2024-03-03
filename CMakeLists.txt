@@ -37,8 +37,8 @@ endif()
 #------------------------------------------------------------------------------
 # Fugio API
 
-set( FUGIO_API_ZIP_URL "https://github.com/bigfug/Fugio/releases/download/v3.1.0/fugio-api.zip" CACHE STRING "URL to fugio-api.zip" )
-set( FUGIO_CORE_API_ZIP_URL "https://github.com/bigfug/fugio-core-plugins/releases/download/latest/fugio-core-api.zip" CACHE STRING "URL to fugio-core-api.zip" )
+set( FUGIO_API_ZIP_URL "https://github.com/bigfug/Fugio/releases/download/v4.0.0-alpha/fugio-api.zip" CACHE STRING "URL to fugio-api.zip" )
+set( FUGIO_CORE_API_ZIP_URL "https://github.com/bigfug/fugio-core-plugins/releases/download/v1.0.0/fugio-core-api.zip" CACHE STRING "URL to fugio-core-api.zip" )
 
 if( NOT EXISTS "${CMAKE_BINARY_DIR}/include/fugio" )
     message( "Initialising fugio-api" )
