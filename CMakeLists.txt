@@ -170,6 +170,8 @@ set( FUGIO_UNIX_DEPENDENCIES )
 add_subdirectory( api )
 add_subdirectory( fugio-portmidi )
 
+add_dependencies( fugio-portmidi portmidi )
+
 #------------------------------------------------------------------------------
 
 set( FUGIO_PLUGIN_URL ${CMAKE_BINARY_DIR} CACHE STRING "" )

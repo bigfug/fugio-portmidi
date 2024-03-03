@@ -81,6 +81,8 @@ endif()
 #------------------------------------------------------------------------------
 # PortMidi
 
+add_dependencies( ${PROJECT_NAME} portmidi )
+
 target_include_directories( ${PROJECT_NAME} PRIVATE ${CMAKE_BINARY_DIR}/portmidi/include )
 
 target_compile_definitions( ${PROJECT_NAME} PRIVATE PORTMIDI_SUPPORTED )
