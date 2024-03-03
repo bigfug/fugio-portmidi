@@ -1,0 +1,14 @@
+{
+  "author": "Alex May",
+  "contact": "https://github.com/bigfug",
+  "homepage": "https://github.com/bigfug",
+  "description": "PortMidi plugins for Fugio",
+  "identifier": "com.bigfug.fugio.portmidi",
+  "plugins": {
+	"com.bigfug.fugio.portmidi": {
+	  "1.0.0": {
+		"win64": "@FUGIO_PLUGIN_URL@/fugio-portmidi-win64.zip"
+	  }
+	}
+  }
+}

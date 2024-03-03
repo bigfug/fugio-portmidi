@@ -1,0 +1,22 @@
+{
+  "pluginName": "@PLUGIN_NAME@",
+  "pluginDescriptionShort": "@PLUGIN_DESCRIPTION_SHORT@",
+  "pluginDescriptionLong": "@PLUGIN_DESCRIPTION_LONG@",
+  "pluginFilename": "@PLUGIN_FILENAME@",
+
+  "pluginUuid": "{@PLUGIN_UUID@}",
+  "pluginIid": "@PLUGIN_IID@",
+
+  "versionRelease": "@PLUGIN_RELEASE_VERSION@",
+  "versionInterface": "@PLUGIN_COMPATIBILITY_VERSION@",
+  "versionApi": "@PLUGIN_API_COMPATIBILITY@",
+
+  "pluginReleaseDate": "@PLUGIN_RELEASE_DATE@",
+  "authorName": "@PLUGIN_AUTHOR_NAME@",
+  "authorContact": "@PLUGIN_AUTHOR_CONTACT@",
+
+  "requirements":
+  [
+@PLUGIN_REQUIREMENTS@
+  ]
+}
