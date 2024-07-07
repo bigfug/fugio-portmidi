@@ -22,9 +22,12 @@
 PortMidiOutputNode::PortMidiOutputNode( QSharedPointer<fugio::NodeInterface> pNode ) :
 	NodeControlBase( pNode ), mDevice( Q_NULLPTR ), mClockValue( 0 ), mClockLast( 0 ), mPlayState( false )
 {
-	mPinClock = pinInput( "Beat Position" );
+	FUGID( PIN_INPUT_BEAT_POSITION, "9e154e12-bcd8-4ead-95b1-5a59833bcf4e" );
+	FUGID( PIN_INPUT_MIDI, "1b5e9ce8-acb9-478d-b84b-9288ab3c42f5" );
 
-	mPinMidi  = pinInput( "MIDI" );
+	mPinClock = pinInput( "Beat Position", PIN_INPUT_BEAT_POSITION );
+
+	mPinMidi  = pinInput( "MIDI", PIN_INPUT_MIDI );
 
 	mPinMidi->registerPinInputType( PID_MIDI_OUTPUT );
 

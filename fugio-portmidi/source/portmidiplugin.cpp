@@ -13,8 +13,6 @@
 
 PortMidiPlugin	*PortMidiPlugin::mInstance = nullptr;
 
-QList<QUuid>	NodeControlBase::PID_UUID;
-
 ClassEntry	NodeClasses[] =
 {
 	ClassEntry( "MIDI Input",			"PortMidi", ClassEntry::None, NID_PORTMIDI_INPUT,  &PortMidiInputNode::staticMetaObject ),
