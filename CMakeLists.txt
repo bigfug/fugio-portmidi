@@ -147,40 +147,23 @@ elseif( UNIX )
 endif()
 
 #------------------------------------------------------------------------------
-# PortMidi
-
-include(ExternalProject)
-
-ExternalProject_Add(portmidi
-  GIT_REPOSITORY    https://github.com/PortMidi/portmidi.git
-  GIT_TAG           v2.0.4
-  CMAKE_ARGS
-		  -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/portmidi
-		  -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-		  -DBUILD_SHARED_LIBS=OFF
-		  -DPM_USE_STATIC_RUNTIME=OFF
-)
-
-list( APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR}/portmidi/lib/cmake )
-
-#------------------------------------------------------------------------------
 
 set( FUGIO_UNIX_DEPENDENCIES )
 
 add_subdirectory( api )
 add_subdirectory( fugio-portmidi )
 
-add_dependencies( fugio-portmidi portmidi )
-
 #------------------------------------------------------------------------------
 
-set( FUGIO_PLUGIN_URL ${CMAKE_BINARY_DIR} CACHE STRING "" )
+if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+	set( FUGIO_PLUGIN_URL ${CMAKE_BINARY_DIR} CACHE STRING "" )
 
-configure_file( fugio-manifest.json.in ${CMAKE_BINARY_DIR}/fugio-manifest.json @ONLY )
+	configure_file( fugio-manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/fugio-manifest.json @ONLY )
 
-add_custom_target( fugio-plugin-manifest
-	SOURCES ${CMAKE_CURRENT_BINARY_DIR}/fugio-manifest.json
-)
+	add_custom_target( fugio-plugin-manifest
+		SOURCES ${CMAKE_CURRENT_BINARY_DIR}/fugio-manifest.json
+	)
+endif()
 
 #------------------------------------------------------------------------------
 # CPack

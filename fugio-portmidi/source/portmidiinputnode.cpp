@@ -14,7 +14,7 @@
 
 #include <fugio/midi/uuid.h>
 #include <fugio/midi/midi_interface.h>
-#include <fugio/core/variant_interface.h>
+#include <fugio/variant_interface.h>
 
 #include <fugio/utils.h>
 

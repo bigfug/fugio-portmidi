@@ -62,8 +62,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 target_include_directories( ${PROJECT_NAME} PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/include
-	${CMAKE_SOURCE_DIR}/fugio-core/include
-	${CMAKE_SOURCE_DIR}/fugio-midi/include
+	${CMAKE_CURRENT_SOURCE_DIR}/../../fugio-core-plugins/fugio-core/include
+	${CMAKE_CURRENT_SOURCE_DIR}/../../fugio-core-plugins/fugio-midi/include
 )
 
 #------------------------------------------------------------------------------
@@ -72,47 +72,44 @@ target_include_directories( ${PROJECT_NAME} PRIVATE
 if( FUGIO_API AND EXISTS ${FUGIO_API} )
 	target_include_directories( ${PROJECT_NAME} PRIVATE ${FUGIO_API} )
 
-	target_sources( ${PROJECT_NAME} PRIVATE
-		${FUGIO_API}/fugio/nodecontrolbase.h
-		${FUGIO_API}/fugio/pincontrolbase.h
-		)
+	target_link_libraries( ${PROJECT_NAME} PUBLIC libfugio )
 endif()
 
 #------------------------------------------------------------------------------
 # PortMidi
 
-add_dependencies( ${PROJECT_NAME} portmidi )
+find_package(PortMidi CONFIG REQUIRED)
 
-target_include_directories( ${PROJECT_NAME} PRIVATE ${CMAKE_BINARY_DIR}/portmidi/include )
+target_link_libraries( ${PROJECT_NAME} PRIVATE PortMidi::portmidi)
 
 target_compile_definitions( ${PROJECT_NAME} PRIVATE PORTMIDI_SUPPORTED )
 
-if( WIN32 )
-	target_link_libraries( ${PROJECT_NAME} PRIVATE
-		${CMAKE_BINARY_DIR}/portmidi/lib/portmidi.lib
-		winmm.lib
-	)
-endif( WIN32 )
+# if( WIN32 )
+# 	target_link_libraries( ${PROJECT_NAME} PRIVATE
+# 		${CMAKE_BINARY_DIR}/portmidi/lib/portmidi.lib
+# 		winmm.lib
+# 	)
+# endif( WIN32 )
 
-if( APPLE )
-	find_library( CoreMidi_LIBRARY CoreMidi )
-	find_library( CoreFoundation_LIBRARY CoreFoundation )
-	find_library( CoreServices_LIBRARY CoreServices )
-	find_library( CoreAudio_LIBRARY CoreAudio )
+# if( APPLE )
+# 	find_library( CoreMidi_LIBRARY CoreMidi )
+# 	find_library( CoreFoundation_LIBRARY CoreFoundation )
+# 	find_library( CoreServices_LIBRARY CoreServices )
+# 	find_library( CoreAudio_LIBRARY CoreAudio )
 
-	target_link_libraries( ${PROJECT_NAME}
-		${CoreMidi_LIBRARY}
-		${CoreFoundation_LIBRARY}
-		${CoreServices_LIBRARY}
-		${CoreAudio_LIBRARY}
-		)
-endif( APPLE )
+# 	target_link_libraries( ${PROJECT_NAME}
+# 		${CoreMidi_LIBRARY}
+# 		${CoreFoundation_LIBRARY}
+# 		${CoreServices_LIBRARY}
+# 		${CoreAudio_LIBRARY}
+# 		)
+# endif( APPLE )
 
 #------------------------------------------------------------------------------
 # Plugin Config
 
 configure_file(
-	${CMAKE_SOURCE_DIR}/config.h.in
+	../config.h.in
 	${CMAKE_CURRENT_BINARY_DIR}/config.h
 	@ONLY
 )
@@ -127,7 +124,7 @@ target_include_directories( ${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} 
 # Plugin Manifest
 
 configure_file(
-	${CMAKE_SOURCE_DIR}/manifest.json.in
+	../manifest.json.in
 	${CMAKE_CURRENT_BINARY_DIR}/manifest.json
 	@ONLY
 )
